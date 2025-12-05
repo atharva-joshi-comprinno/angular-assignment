@@ -1,1 +1,7 @@
-<p>landing works!</p>
+<div class="container">
+  <h1>Pokémon Trainer</h1>
+  <form (ngSubmit)="onSubmit()">
+    <input [(ngModel)]="trainerName" name="trainerName" placeholder="Enter your trainer name" required>
+    <button type="submit">Start</button>
+  </form>
+</div>

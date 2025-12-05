@@ -1,3 +1,5 @@
+
+// SERVICE FOR POKEMON
 import { Injectable } from '@angular/core';
 
 @Injectable({
