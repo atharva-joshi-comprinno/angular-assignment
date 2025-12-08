@@ -1,1 +1,14 @@
-<p>pokemon-card works!</p>
+<div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
+  <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="w-32 h-32 mx-auto">
+  <h3 class="text-xl font-semibold text-center mt-4">{{ pokemon.name | capitalize }}</h3>
+  @if (isCaught) {
+    <button disabled class="w-full mt-4 bg-gray-400 text-white py-2 rounded-lg cursor-not-allowed">
+      Caught
+    </button>
+  } @else {
+    <button (click)="catch.emit(pokemon)" 
+      class="w-full mt-4 bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition cursor-pointer">
+      Catch
+    </button>
+  }
+</div>

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TrainerService } from '../../core/trainerService';
 
 @Component({
   selector: 'app-landing',
@@ -9,8 +11,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class Landing {
   trainerName = '';
+  private router = inject(Router);
+  private trainerService = inject(TrainerService);
 
   onSubmit() {
-    console.log('Trainer name:', this.trainerName);
+    if (this.trainerName.trim()) {
+      this.trainerService.setTrainerName(this.trainerName);
+      this.router.navigate(['/catalogue']);
+    }
   }
 }
