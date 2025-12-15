@@ -16,7 +16,7 @@ export class Catalogue implements OnInit {
   private pokemonService = inject(PokemonService);
   private trainerService = inject(TrainerService);
   private router = inject(Router);
-  
+
   pokemonList = signal<PokemonDetail[]>([]);
   loading = signal(true);
   selectedType = signal<string>('all');
@@ -24,8 +24,8 @@ export class Catalogue implements OnInit {
 
   filteredPokemon = computed(() => {
     if (this.selectedType() === 'all') return this.pokemonList();
-    return this.pokemonList().filter(p => 
-      p.types.some(t => t.type.name === this.selectedType())
+    return this.pokemonList().filter((p) =>
+      p.types.some((t) => t.type.name === this.selectedType())
     );
   });
 
@@ -34,10 +34,10 @@ export class Catalogue implements OnInit {
   }
 
   loadPokemon() {
-    this.pokemonService.getPokemonList(100).subscribe(response => {
-      response.results.forEach(pokemon => {
-        this.pokemonService.getPokemonDetail(pokemon.name).subscribe(detail => {
-          this.pokemonList.update(list => {
+    this.pokemonService.getPokemonList(100).subscribe((response) => {
+      response.results.forEach((pokemon) => {
+        this.pokemonService.getPokemonDetail(pokemon.name).subscribe((detail) => {
+          this.pokemonList.update((list) => {
             const newList = [...list, detail];
             this.extractTypes(newList);
             return newList;
@@ -50,8 +50,8 @@ export class Catalogue implements OnInit {
 
   extractTypes(pokemonList: PokemonDetail[]) {
     const types = new Set<string>();
-    pokemonList.forEach(p => {
-      p.types.forEach(t => types.add(t.type.name));
+    pokemonList.forEach((p) => {
+      p.types.forEach((t) => types.add(t.type.name));
     });
     this.allTypes.set(['all', ...Array.from(types).sort()]);
   }

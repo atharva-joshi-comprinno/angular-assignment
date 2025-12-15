@@ -27,11 +27,13 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         @for (pokemon of filteredPokemon(); track pokemon.id) {
+          @defer(on timer(1000)){
           <app-pokemon-card 
             [pokemon]="pokemon" 
             [isCaught]="isCaught(pokemon.id)"
             (catch)="catchPokemon($event)">
           </app-pokemon-card>
+          }
         }
       </div>
     }
