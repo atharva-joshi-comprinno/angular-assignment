@@ -1,15 +1,18 @@
-<div class="min-h-screen bg-gray-100 p-8">
+<div class="min-h-screen bg-gray-100 dark:bg-gray-900 p-8">
   <div class="max-w-7xl mx-auto">
     <div class="flex justify-between items-center mb-8">
-      <h1 class="text-4xl font-bold text-gray-800">Pokémon Catalogue</h1>
-      <button (click)="goToProfile()" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">
-        My Profile
-      </button>
+      <h1 class="text-4xl font-bold text-gray-800 dark:text-white">Pokémon Catalogue</h1>
+      <div class="flex gap-4">
+        <app-theme-toggle></app-theme-toggle>
+        <button (click)="goToProfile()" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">
+          My Profile
+        </button>
+      </div>
     </div>
 
     @if (loading()) {
       <div class="text-center py-20">
-        <p class="text-xl text-gray-600">Loading Pokémon...</p>
+        <p class="text-xl text-gray-600 dark:text-gray-300">Loading Pokémon...</p>
       </div>
     } @else {
       <div class="mb-6 flex gap-2 flex-wrap">
@@ -19,7 +22,9 @@
             [class.text-white]="selectedType() === type"
             [class.bg-white]="selectedType() !== type"
             [class.text-gray-800]="selectedType() !== type"
-            class="px-4 py-2 rounded-lg border-2 border-purple-600 hover:bg-purple-100 hover:text-black transition">
+            [class.dark:bg-gray-700]="selectedType() !== type"
+            [class.dark:text-white]="selectedType() !== type"
+            class="px-4 py-2 rounded-lg border-2 border-purple-600 hover:bg-purple-100 dark:hover:bg-purple-800 hover:text-black dark:hover:text-white transition">
             {{ type | capitalize}}
           </button>
         }

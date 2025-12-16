@@ -1,12 +1,13 @@
-<div class="min-h-screen bg-gray-100 p-8">
+<div class="min-h-screen bg-gray-100 dark:bg-gray-900 p-8">
   <div class="max-w-7xl mx-auto">
-    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-8">
       <div class="flex justify-between items-center">
         <div>
-          <h1 class="text-4xl font-bold text-gray-800 mb-2">Trainer Profile</h1>
+          <h1 class="text-4xl font-bold text-gray-800 dark:text-white mb-2">Trainer Profile</h1>
           <p class="text-2xl text-purple-600 font-semibold">{{ trainerName() }}</p>
         </div>
         <div class="flex gap-4">
+          <app-theme-toggle></app-theme-toggle>
           <button (click)="goToCatalogue()" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition cursor-pointer">
             Back to Catalogue
           </button>
@@ -17,17 +18,17 @@
       </div>
     </div>
 
-    <div class="bg-white rounded-lg shadow-lg p-8">
-      <h2 class="text-2xl font-bold text-gray-800 mb-6">Caught Pokémon ({{ caughtPokemon().length }})</h2>
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Caught Pokémon ({{ caughtPokemon().length }})</h2>
       
       @if (caughtPokemon().length === 0) {
-        <p class="text-gray-600 text-center py-10">You haven't caught any Pokémon yet. Go to the catalogue to catch some!</p>
+        <p class="text-gray-600 dark:text-gray-300 text-center py-10">You haven't caught any Pokémon yet. Go to the catalogue to catch some!</p>
       } @else {
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           @for (pokemon of caughtPokemon(); track pokemon.id) {
-            <div class="bg-red-100 rounded-lg shadow p-6">
+            <div class="bg-red-100 dark:bg-red-900 rounded-lg shadow p-6">
               <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="w-32 h-32 mx-auto">
-              <h3 class="text-xl font-semibold text-center mt-4">{{ pokemon.name | capitalize }}</h3>
+              <h3 class="text-xl font-semibold text-center mt-4 text-gray-800 dark:text-white">{{ pokemon.name | capitalize }}</h3>
               <button (click)="removePokemon(pokemon.id)" 
                 class="w-full mt-4 bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition cursor-pointer">
                 Release
